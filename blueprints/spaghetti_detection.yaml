@@ -77,26 +77,26 @@ blueprint:
       selector:
         text:
     notification_title:
-      name: Title for notification
-      description: Title that will be displayed on the notification
+      name: Notification title
+      description: The title displayed in the notification
       default: "Bambu Lab — Spaghetti Detected"
       selector:
         text:
     notification_prefix:
-      name: Prefix for notification text
-      description: The confidence value will be displayed after this text
-      default: "Confidence: "
+      name: Notification prefix
+      description: Text shown before the confidence value
+      default: "Confidence:"
       selector:
         text:
-    notification_resume_printing_text:
-      name: Resume printing button text
-      description: Text displayed on the button that resumes printing
+    notification_resume_printing_label:
+      name: Resume printing button label
+      description: Text shown on the button to resume printing
       default: "Resume Printing"
       selector:
         text:
-    notification_stop_printing_text:
-      name: Stop printing button text
-      description: Text displayed on the button that stops printing
+    notification_stop_printing_label:
+      name: Stop printing button label
+      description: Text shown on the button to stop printing
       default: "Stop Printing"
       selector:
         text:
@@ -482,9 +482,9 @@ action:
                             volume: 0.75
                         actions:
                           - action: BAMBU_LAB_RESUME_PRINTING
-                            title: !input notification_resume_printing_text
+                            title: !input notification_resume_printing_label
                           - action: BAMBU_LAB_STOP_PRINTING
-                            title: !input notification_stop_printing_text
+                            title: !input notification_stop_printing_label
               - conditions:
                   - condition: template
                     value_template: "{{ NOTIFICATION_SETTINGS_VAR == 'standard' }}"
@@ -497,9 +497,9 @@ action:
                         image: "{{ HOME_ASSISTANT_HOST_VAR }}{{ state_attr(PRINTER_CAMERA_VAR, 'entity_picture') }}"
                         actions:
                           - action: BAMBU_LAB_RESUME_PRINTING
-                            title: !input notification_resume_printing_text
+                            title: !input notification_resume_printing_label
                           - action: BAMBU_LAB_STOP_PRINTING
-                            title: !input notification_stop_printing_text
+                            title: !input notification_stop_printing_label
           - service: number.set_value
             data:
               value: 0
